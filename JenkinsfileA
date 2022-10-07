@@ -8,7 +8,7 @@ pipeline{
             steps{
                git branch: 'main',
                credentialsId: '86a0acf2-edf7-4a1d-bc4c-274587649a9e',
-               url: 'https://github.com/CloudHight/Pet-Adoption-Application-using-Jenkins-pipeline-Team-EU-Team1.git'
+               url: 'https://github.com/Daicon001/Application.git'
                
             }
         }
