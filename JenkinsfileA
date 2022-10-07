@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    tools {
+        maven 'maven'
+    }
+    stages {
+        stage('Pull Source Code from Github'){
+            steps{
+               git branch: 'main',
+               credentialsId: '4e344df8-7878-4a93-ae1e-ca81882a1487',
+               url: 'https://github.com/CloudHight/Pet-Adoption-Application-using-Jenkins-pipeline-Team-EU-Team1.git'
+               
+            }
+        }
+        stage('Building Source Code'){
+            steps{
+               sh 'mvn package -Dmaven.test.skip'
+            }
+        }
+        stage('Sending Artifacts'){
+            steps{
+                sshagent(['jenkinskey']) {
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/petadoption/target/spring-petclinic-2.4.2.war ec2-user@34.251.177.165:/opt/docker'
+                }
+             }
+        }
+    }
+}
