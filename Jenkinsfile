@@ -7,8 +7,8 @@ pipeline{
         stage('Pull Source Code from Github'){
             steps{
                git branch: 'main',
-               credentialsId: 'ba24d4fc-03fb-4241-b75c-f34f7c9d1cb5',
-               url: 'https://github.com/Daicon001/Application.git'
+               credentialsId: 'f641d140-c071-4b64-9334-5c616f8c47fa',
+               url: 'https://github.com/anyaking922/ApplicationBuilder.git'
                
             }
         }
@@ -27,7 +27,7 @@ pipeline{
         stage('Sending Artifacts') {
             steps{
                 sshagent(['jenkinskey']) {
-                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/petadoption/target/spring-petclinic-2.4.2.war ec2-user@52.26.44.115:/opt/docker'
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/petadoption/target/spring-petclinic-2.4.2.war ec2-user@54.229.122.183:/opt/docker'
                 }
              }
         }
