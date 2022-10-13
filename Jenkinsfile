@@ -7,14 +7,14 @@ pipeline{
         stage('Pull Source Code from Github'){
             steps{
                git branch: 'main',
-               credentialsId: 'f641d140-c071-4b64-9334-5c616f8c47fa',
+               credentialsId: 'd07bde12-3e29-4f90-985a-411a14a30a5e',
                url: 'https://github.com/anyaking922/ApplicationBuilder.git'
                
             }
         }
         stage('Code Analysis'){
             steps{
-                withSonarQubeEnv('sonarQube') {
+                withSonarQubeEnv('sonar') {
                     sh "mvn sonar:sonar"
                 }
             }
@@ -27,7 +27,7 @@ pipeline{
         stage('Sending Artifacts') {
             steps{
                 sshagent(['jenkinskey']) {
-                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/testing_sonar/target/spring-petclinic-2.4.2.war ec2-user@54.229.122.183:/opt/docker'
+                sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/testing_sonar/target/spring-petclinic-2.4.2.war ec2-user@52.51.97.177:/opt/docker'
                 }
              }
         }
