@@ -7,7 +7,7 @@ pipeline{
         stage('Pull Source Code from Github'){
             steps{
                git branch: 'main',
-               credentialsId: 'GitCred',
+               credentialsId: 'Gitcred',
                url: 'https://github.com/anyaking922/ApplicationBuilder.git'
                
             }
